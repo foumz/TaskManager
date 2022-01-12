@@ -22,8 +22,8 @@ export class DashboardComponent implements OnInit
   Clients: string[] ;
   Projects: string[] ;
   Years: number[] ;
-  // TeamMembersSummary: any = [];
-  // TeamMembers: any = [];
+  TeamMembersSummary: any[];
+  TeamMembers: any[];
 
   constructor() {
     this.Designation="";
@@ -38,6 +38,8 @@ export class DashboardComponent implements OnInit
     this.Clients=[];
     this.Projects=[];
     this.Years=[];
+    this.TeamMembersSummary=[];
+    this.TeamMembers=[];
   }
   ngOnInit(): void {
     
@@ -59,10 +61,43 @@ export class DashboardComponent implements OnInit
      "Project A","Project B","Project C","Project D"
    ];
 
-   for (var i=2019;i>2010;++i){
+   for (var i=2019;i>2010;--i){
      this.Years.push(i);
-   }
+   };
 
+   this.TeamMembersSummary=[
+     {Region:"East",TeamMembersCount:20,TemporaryUnavailableMembers:4},
+     {Region:"West",TeamMembersCount:15,TemporaryUnavailableMembers:8},
+     {Region:"North",TeamMembersCount:17,TemporaryUnavailableMembers:1},
+     {Region:"South",TeamMembersCount:15,TemporaryUnavailableMembers:6},
+   ];
+
+   this.TeamMembers=[
+     {Region:"East", Members:[
+       {ID:1,Name:"Ford",Status:"Available"},
+       {ID:2,Name:"Miller",Status:"Available"},
+       {ID:3,Name:"Jones",Status:"Busy"},
+       {ID:4,Name:"James",Status:"Busy"},
+     ]},
+     {Region:"West", Members:[
+      {ID:5,Name:"Anna",Status:"Available"},
+      {ID:6,Name:"Arrun",Status:"Available"},
+      {ID:7,Name:"Jesus",Status:"Busy"},
+      {ID:8,Name:"Peter",Status:"Busy"},
+    ]},
+    {Region:"South", Members:[
+      {ID:9,Name:"Antoine",Status:"Available"},
+      {ID:10,Name:"Filipe",Status:"Available"},
+      {ID:11,Name:"Kuy",Status:"Busy"},
+      {ID:12,Name:"Yuka",Status:"Busy"},
+    ]},
+    {Region:"North", Members:[
+      {ID:13,Name:"Utku",Status:"Available"},
+      {ID:14,Name:"Juda",Status:"Available"},
+      {ID:15,Name:"Kraken",Status:"Busy"},
+      {ID:16,Name:"Kim",Status:"Busy"},
+    ]}
+   ];
 
   }
 
