@@ -101,4 +101,25 @@ export class DashboardComponent implements OnInit
 
   }
 
+  onProjectChange($event:any){
+    if($event.target.innerHTML.trim()=="Project A"){
+      this.ProjectCost=2113;
+      this.CurrentExpenditure=95959;
+      this.AvailableFunds=654654;
+    }else if($event.target.innerHTML.trim()=="Project B"){
+      this.ProjectCost=45257;
+      this.CurrentExpenditure=104653;
+      this.AvailableFunds=786876;
+    }else if($event.target.innerHTML.trim()=="Project C"){
+      this.ProjectCost=21782;
+      this.CurrentExpenditure=273113;
+      this.AvailableFunds=98864;
+    }else if($event.target.innerHTML.trim()=="Project D"){
+      this.ProjectCost=65422;
+      this.CurrentExpenditure=3257;
+      this.AvailableFunds=8561;
+    }
+    
+  }
+
 }
