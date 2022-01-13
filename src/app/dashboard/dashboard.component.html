@@ -5,17 +5,18 @@
     </ol>
 </nav>
 <h5>Dashboard</h5>
+<h6>{{Today|date:"mediumDate"}}</h6>
 <div class="row">
     <div class="col-lg-3 pb-3" style="background-color: gray;">
         <div class="row">
             <div class="col-11 text-white text-center mx-2 rounded pt-2 pv-2 font-weight-bold" style="background-color:gray;font-family: 'Courier New', Courier, monospace ;">
-                {{Designation}} <!--Permet d'appeler l'attribut dans le component-->
+                {{Designation | uppercase}} <!--Permet d'appeler l'attribut dans le component/ le | + une propriété permet de modifier le style du {{}}-->
             </div>
             <div class="col-12 text-center mt-2">
                 <img src="assets/user.png" width="120px">
             </div>
             <div class="col-12 text-center pt-2 pb-2 font-weight-bold" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                {{Username}}
+                {{Username|lowercase}}
             </div>
             <div class="col-12 text-center pt-2 pb-2" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">
             Team Summary
@@ -32,7 +33,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         PENDING TASKS
-                        <span class="badge badge-secondary badge-pill" style="font-size: 13px;">{{UpComingProjects}}</span>
+                        <span class="badge badge-secondary badge-pill" style="font-size: 13px;">{{UpComingProjects|percent}}</span>
                     </li>
                 </ul>
             </div>
@@ -40,9 +41,10 @@
             <div class="col-12">
                 <ul class="list-group list-group flush">
                     <li class="list-group-item" *ngFor="let client of Clients">
-                        {{client}}
+                        {{client | slice:0:10}} <!-- slice:0:10 n'affichera que les characters entre 0 et 10 du string -->
                     </li> <!--print des clients et généère un li par elem de l'array-->
                 </ul>
+                {{TeamMembersSummary|json}}
             </div>
         </div>
     </div>
@@ -81,15 +83,15 @@
                 <table class="table table-borderless">
                     <tr>
                         <td>Project Cost</td>
-                        <td>${{ProjectCost}}</td>
+                        <td>{{ProjectCost|currency:"EUR"}}</td>
                     </tr>
                     <tr>
                         <td>Current expenditure</td>
-                        <td>${{CurrentExpenditure}}</td>
+                        <td>{{CurrentExpenditure|currency:"EUR"}}</td>
                     </tr>
                     <tr>
                         <td>Available Funds</td>
-                        <td>${{AvailableFunds}}</td>
+                        <td>${{AvailableFunds|currency:"EUR"}}</td>
                     </tr>
 
                 </table>

@@ -26,6 +26,8 @@ export class DashboardComponent implements OnInit
   TeamMembersSummary: any[];
   TeamMembers: any[];
 
+  Today:Date;
+
   constructor() {
     this.Index=0;
     this.Designation="";
@@ -42,6 +44,7 @@ export class DashboardComponent implements OnInit
     this.Years=[];
     this.TeamMembersSummary=[];
     this.TeamMembers=[];
+    this.Today=new Date();
   }
   ngOnInit(): void {
     
@@ -49,12 +52,12 @@ export class DashboardComponent implements OnInit
     this.Username="John Smith";
     this.NoOfTeamMembers=67;
     this.PendingTasks=15;
-    this.UpComingProjects=2;
+    this.UpComingProjects=0.2;
     this.ProjectCost=500000;
     this.CurrentExpenditure=5632;
     this.AvailableFunds=65812;
     this.Index=0;
-
+    this.Today=new Date();
    this.Clients=[
      "ABC Infotech LTD","Def software solution","Engie"
    ];
