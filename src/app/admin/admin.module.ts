@@ -5,6 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { DashboardService } from '../dashboard.service';
 import { ProjectsComponent } from './projects/projects.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +17,8 @@ import { ProjectsComponent } from './projects/projects.component';
     ProjectsComponent
   ], //On déclare les modules faisant parties de AdminModule
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule //ajouter FormsModule quand on utilise des forms
   ],
   exports:[
     DashboardComponent,
