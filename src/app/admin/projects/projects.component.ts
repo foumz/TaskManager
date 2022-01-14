@@ -11,6 +11,10 @@ export class ProjectsComponent implements OnInit {
   newProject:Project= new Project();
   editProject:Project=new Project();
   editIndex:any=null;
+  deleteProject:Project=new Project();
+  deleteIndex:any=null;
+  searchBy:string="ProjectName";
+  searchText:string="";
   constructor(private projectService:ProjectsService) {
     this.projects=[];
     
@@ -72,6 +76,41 @@ export class ProjectsComponent implements OnInit {
     },(error)=>{
       console.log(error);
     })
+  }
+
+  onDeleteClick(event:any,index:number){
+    this.deleteIndex = index;
+    this.deleteProject.projectID = this.projects[index].projectID;
+    this.deleteProject.projectName = this.projects[index].projectName;
+    this.deleteProject.dateOfStart = this.projects[index].dateOfStart;
+    this.deleteProject.teamSize = this.projects[index].teamSize;
+  }
+
+  onDeleteConfirmClick(){
+    this.projectService.deleteProject(this.deleteProject.projectID).subscribe(
+      (response) =>
+      {
+        this.projects.splice(this.deleteIndex, 1);
+        this.deleteProject.projectID = null;
+        this.deleteProject.projectName = null;
+        this.deleteProject.teamSize = null;
+        this.deleteProject.dateOfStart = null;
+        
+      },
+      (error) =>
+      {
+        console.log(error);
+      });
+  }
+
+  onSearchClick(){
+    this.projectService.searchProject(this.searchBy,this.searchText).subscribe(
+      (response:Project[])=>{
+        this.projects=response;
+      },
+      (error)=>{
+        console.log(error);
+      })
   }
 
 }

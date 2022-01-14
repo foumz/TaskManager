@@ -1,6 +1,30 @@
 <p>Project</p>
 <div class="row">
     <div class="col-8 mx-auto">
+        <div class="form-group form-row">
+            <label for="drpSearchBy">Search by</label>
+            <div class="col-9">
+                <select class="drpSearchBy" id="drpSearchBy" name="SearchBy" [(ngModel)]="searchBy"> 
+                    <option value="ProjectID">Project ID</option>
+                    <option value="ProjectName">Project Name</option>
+                    <option value="DateOfStart">Date of start</option>
+                    <option value="TeamSize">Team size</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group form-row">
+            <label for="drpSearchBy">Search :</label>
+            <div class="col-9">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtSearchText" name="SearchText" [(ngModel)]="searchText">
+                    <div class="input-group-append" (click)="onSearchClick()">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8 mx-auto">
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#createProject">
               Create Project
             </button>    
@@ -22,7 +46,11 @@
                     <td>{{p.teamSize}}</td>
                     <td><button type="button" class="btn btn-info " data-toggle="modal" (click)="onEditClick($event,i)" data-target="#editProject">
                         Edit Project
-                      </button>   </td>
+                      </button> 
+                      <button type="button" class="btn btn-danger " data-toggle="modal" (click)="onDeleteClick($event,i)" data-target="#deleteProject">
+                        Delete Project
+                      </button>    </td>
+                      
                 </tr>
             </tbody>
         </table>
@@ -81,7 +109,7 @@
     </div>
 </form>
 
-<!-- Modal -->
+<!-- Modal EDIT-->
 <form>
     <div class="modal fade" id="editProject" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -124,6 +152,43 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" (click)="onUpdateClick()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<!-- Modal EDIT-->
+<form>
+    <div class="modal fade" id="deleteProject" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 700px">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Project</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-warning">Are you sure to delete this project?</div>
+                        <div class="form-group row">
+                            <label for="txtDeleteProjectID" class="col-sm-2 col-form-label">Project ID</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="txtDeleteProjectID" style="width:100px" class="form-control-plain-text" placeholder="Project ID" name="ProjectID" [(ngModel)]="deleteProject.projectID" disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtDeleteProjectName" class="col-sm-2 col-form-label">Project Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="txtDeleteProjectName" style="width:150px" class="form-control-plain-text" placeholder="Project Name" name="ProjectName" [(ngModel)]="deleteProject.projectName" disabled="disabled">
+                            </div>
+                        </div>
+                        
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" (click)="onDeleteConfirmClick()">Delete</button>
                     </div>
                 </div>
             </div>
